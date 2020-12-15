@@ -2,25 +2,9 @@
 
 A portal that manages automations and other scripts on Asana.
 
-## Project Structure
+# Documentation
 
-- To do
-
-## Portal
-
-- To do
-  
-## Automations
-
-- To do
-  
-## Scripts
-
-- To do
-  
-## Environment Variables
-
-- To do
+See the [Wiki](/wiki) for full documentation, examples and other information.
   
 ## Deployment
 
