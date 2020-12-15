@@ -1,28 +1,28 @@
-# About
+# 🤖 Asana Bot
 
-A portal that manages automations and other scripts on Asana.
+A portal that manages automations and other scripts on [Asana](https://asana.com).
 
-# Documentation
+It was designed to cover my specific needs but can be used as a guide or starting point for your own requirements.
 
-See the [Wiki](/wiki) for full documentation, examples and other information.
+![asana-bot screenshot](public/screenshot.png)
+
+## Documentation
+
+See the [Wiki](https://github.com/rubengarciam/asana-bot/wiki) for full documentation, guides and other information.
   
-## Deployment
+## Dependencies
 
-The portal and APIs are built with [Next.js](https://nextjs.org) and it been designed to be deployed in [Vercel](https://vercel.com).
+This project uses the following external libraries 🙌 :
 
-Clone the repo and install the dependencies:
+- [Axios](https://github.com/axios/axios)
+- [Next.js](https://nextjs.org)
+- [Tailwind CSS](https://tailwindcss.com) and [Headless UI](https://headlessui.dev)
+  
+[React](http://reactjs.org) specific libraries:
 
-```bash
-git clone https://github.com/rubengarciam/asana-bot.git 
-cd asana-bot
-npm install
-```
+- [http-status-codes](https://github.com/prettymuchbryce/http-status-codes)
+- [react-json-editor-ajrm](https://github.com/AndrewRedican/react-json-editor-ajrm#readme)
+- [react-responsive](https://github.com/contra/react-responsive)
+- [react-transition-group](http://reactcommunity.org/react-transition-group/)
 
-Install Vercel's cli and run locally:
-
-```bash
-npm i -g vercel
-vercel dev
-```
-
-Don't forget to add your environment variables locally in the `env.local` file.
+It is designed to be deployed in [Vercel](https://vercel.com/home?utm_source=next-site&utm_medium=banner&utm_campaign=next-website).
