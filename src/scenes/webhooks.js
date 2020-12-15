@@ -27,7 +27,7 @@ const sampleWebhook = {
       }
     ],
     "resource": "1130757427412039",
-    "target": "https://asana-bot.vercel.app/api/ts-backlog-events"
+    "target": "https://asana-bot.vercel.app/api/"
   }
 }
 
@@ -38,7 +38,9 @@ const WebhooksPage = () => {
   const [workspaces, setWorkspaces] = useState([])
   const [selectedWorkspace, setSelectedWorkspace] = useState({})
   useEffect(() => {
-    // getWebhooks()
+    if (selectedWorkspace.gid) {
+      getWebhooks()
+    }
   }, [selectedWorkspace]);
   const [webhooks, setWebhooks] = useState([])
   const [newWebhook, setNewWebhook] = useState(sampleWebhook)
@@ -81,7 +83,7 @@ const WebhooksPage = () => {
       method: "POST",
       url: "https://app.asana.com/api/1.0/webhooks",
       headers: {
-        Authorization: process.env.NEXT_PUBLIC_ASANA_TOKEN,
+        Authorization: process.env.ASANA_TOKEN,
         "Content-Type": "application/json; charset=utf-8",
       },
       data: newWebhook
@@ -115,7 +117,7 @@ const WebhooksPage = () => {
       method: "DELETE",
       url: "https://app.asana.com/api/1.0/webhooks/" + webhooks[index].gid,
       headers: {
-        Authorization: process.env.NEXT_PUBLIC_ASANA_TOKEN,
+        Authorization: process.env.ASANA_TOKEN,
         "Content-Type": "application/json; charset=utf-8",
       },
       data: newWebhook
@@ -152,10 +154,10 @@ const WebhooksPage = () => {
       method: "GET",
       url: "https://app.asana.com/api/1.0/webhooks",
       params: {
-        workspace: process.env.NEXT_PUBLIC_ASANA_WORKSPACE
+        workspace: selectedWorkspace.gid
       },
       headers: {
-        Authorization: process.env.NEXT_PUBLIC_ASANA_TOKEN,
+        Authorization: process.env.ASANA_TOKEN,
         "Content-Type": "application/json; charset=utf-8",
       }
     }).then(res => {
@@ -172,6 +174,7 @@ const WebhooksPage = () => {
         })
       }
     }).catch(err => {
+      console.log(err)
       setMessageStatus({
         value: status.values.error,
         message: err.message
@@ -199,7 +202,7 @@ const WebhooksPage = () => {
       method: "GET",
       url: "https://app.asana.com/api/1.0/workspaces",
       headers: {
-        Authorization: process.env.NEXT_PUBLIC_ASANA_TOKEN,
+        Authorization: process.env.ASANA_TOKEN,
         "Content-Type": "application/json; charset=utf-8",
       }
     }).then(res => {
@@ -211,7 +214,8 @@ const WebhooksPage = () => {
         })
         if (res.data.data.length > 0) {
           setSelectedWorkspace(res.data.data[0])
-          getWebhooks()
+          // console.log(res.data.data[0])
+          // getWebhooks()
         }
       } else {
         setMessageStatus({
